@@ -31,7 +31,7 @@
       </div>
       <div class="description">
         <h5><i>Giá thành</i></h5>
-        <p>{{product?.price}}</p>
+        <p>{{product?.price | currency : 'VND' : '' : '1.0'}} đ</p>
       </div>
       <button type="submit" class="btn btn-success" (click)="addProductToCart(product,1)">Thêm vào giỏ hàng</button>
     </div>
@@ -44,7 +44,7 @@
     <div id="horizontalTab1" style="display: block; width: 100%; margin: 0px;">
       <div class="additional_info_grid">
         <h3>Thông tin chi tiết sản phẩm</h3>
-        <p>{{product?.description}}</p>
+        <div [innerHTML]="articleHTML"></div>
       </div>			        					            	      
     </div>
   </div>

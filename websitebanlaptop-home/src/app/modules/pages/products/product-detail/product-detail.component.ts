@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,11 +13,14 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
 })
 export class ProductDetailComponent implements OnInit {
   product: ProductModel;
+  // store innerHtml article
+  articleHTML: any;
   constructor(
     private _productService: ProductService,
     private _shoppingCartService: ShoppingCartService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
@@ -32,14 +36,18 @@ export class ProductDetailComponent implements OnInit {
       .subscribe((res: ResponseModel<ProductModel>) => {
         if (res.code === 200) {
           this.product = res.data;
-          console.log(this.product);
-          
         }
       });
   }
 
   addProductToCart(product: ProductModel): void {
     this._shoppingCartService.addItem(product, 1);
+  }
+
+  ngAfterContentChecked() {
+    if (this.product) {
+      this.articleHTML = this._sanitizer.bypassSecurityTrustHtml(this.product.description);
+    }
   }
 
 }

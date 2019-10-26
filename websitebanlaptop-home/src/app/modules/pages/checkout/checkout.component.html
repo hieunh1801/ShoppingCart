@@ -26,7 +26,7 @@
                   </div>
                   <div class="col-md-3 price">
                     <label for="quantity">Giá:</label>
-                    <p>${{product?.price}}</p>
+                    <p>{{product?.price | currency : 'VND' : '' : '1.0'}} đ</p>
                   </div>
                 </div>
               </div>
@@ -56,7 +56,7 @@
           <p class="price">{{ currentUser?.phone }}</p>
         </div>
         <div class="summary-item"><label class="text">Tổng tiền:</label>
-          <p class="price">${{ getTotalPrice()}}</p>
+          <p class="price">${{ getTotalPrice() | currency : 'VND' : '' : '1.0'}} đ</p>
         </div>
         <div class="summary-item">
           <input type="text" class="form-control" placeholder="Nhập mã khuyến mãi(Nếu có)" [(ngModel)]="promotionValue"/>
