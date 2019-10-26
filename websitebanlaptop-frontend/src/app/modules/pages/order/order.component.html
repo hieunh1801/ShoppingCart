@@ -1,0 +1,50 @@
+<div class="table-data">
+  <div class="column">
+    <div class="table-container">
+      <table class="table">
+        <thead class="table-header">
+          <tr>
+            <th>STT</th>
+            <th class="">Tài khoản đặt hàng</th>
+            <th class="">Ngày đặt hàng</th>
+            <th class="">Tổng tiền</th>
+            <th class="">Tổng sản phẩm</th>
+            <th class="">Ghi chú</th>
+            <th class="" style="min-width: 100px">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let order of listOrders; let i = index;" class="cursor-pointer">
+            <td>
+              {{pageNumber * pageSize + (i + 1) }}
+            </td>
+            <td class="">
+              {{order?.userName}}
+            </td>
+            <td class="">
+              {{order?.createdate | date: 'dd/MM/yyyy, HH:mm a'}}
+            </td>
+            <td class="">
+              {{order?.totalPrice | currency : 'VND' : '' : '1.0'}}
+            </td>
+            <td class="">
+              {{order?.totalItems}}
+            </td>
+            <td class="">
+              {{order?.notes}}
+            </td>
+            <td class="">
+              <mat-icon (click)="viewOrderDetail(order)" class="mat-18" title="Xem chi tiết hoá đơn"
+                titlePosition="below" style="cursor: pointer;">
+                visibility
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-paginator (page)="pageSizeChange($event)" *ngIf="totalItems > 0" [length]="totalItems" [pageIndex]="page"
+    [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="size" class="paginator">
+  </mat-paginator>
+</div>

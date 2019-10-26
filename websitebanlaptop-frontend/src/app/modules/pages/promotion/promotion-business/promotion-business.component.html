@@ -1,0 +1,46 @@
+<div class="container" style="padding-bottom: 100px;">
+  <div>
+    <h1 class="text-center">
+      Thêm mới mã khuyến mãi
+    </h1>
+  </div>
+  <div [formGroup]="promotionFormGroup">
+    <div class="row form-group">
+      <div class="col-md-6">
+        <label>
+          Sản phẩm
+        </label>
+        <select formControlName="laptopId" class="form-control">
+          <option *ngFor="let product of products" value="{{product?.laptopId}}">
+            {{product?.name}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>
+          Giá trị
+        </label>
+        <input type="text" class="form-control" formControlName="discount"/>
+      </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-md-6">
+          <label>
+            Ngày bắt đầu
+          </label>
+          <input type="date" formControlName="startDate" class="form-control"/>
+        </div>
+        <div class="col-md-6">
+          <label>
+            Ngày kết thúc
+          </label>
+          <input type="date" formControlName="endDate" class="form-control"/>
+        </div>
+      </div>
+  </div>
+  <div style="float: right;">
+      <button class="btn btn-primary" (click)="submit()" style="margin-right: 10px;">Thêm hoá mã khuyến mãi</button>
+      <button class="btn btn-danger" (click)="cancel()">Quay lại</button>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="table-data">
+  <a [routerLink]="['/promotion-business']" class="btn btn-primary pull-right">Thêm mới mã khuyến mãi
+  </a>
+  <div class="column">
+    <div class="table-container">
+      <table class="table">
+        <thead class="table-header">
+          <tr>
+            <th>STT</th>
+            <th class="">Mã khuyến mãi</th>
+            <th class="">Giá trị</th>
+            <th class="">Ngày bắt đầu</th>
+            <th class="">Ngày kết thúc</th>
+            <th class="">Sản phẩm áp dụng</th>
+            <th class="" style="min-width: 100px">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let promotion of promotions; let i = index;" class="cursor-pointer">
+            <td>
+              {{pageNumber * pageSize + (i + 1) }}
+            </td>
+            <td class="">
+              {{promotion?.value}}</td>
+            <td class="">
+              {{promotion?.discount}}</td>
+            <td class="">
+              {{promotion?.startDate | date: 'dd/MM/yyyy, HH:mm a'}}
+            </td>
+            <td class="">
+              {{promotion?.endDate | date: 'dd/MM/yyyy, HH:mm a'}}
+            </td>
+            <td class="">
+              {{promotion?.laptop?.name }}
+            </td>
+            <td class="">
+              <mat-icon (click)="delete(promotion)" class="mat-18" title="Xoá mã khuyến mãi"
+                titlePosition="below" style="cursor: pointer;">
+                delete
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-paginator (page)="pageSizeChange($event)" *ngIf="totalItems > 0" [length]="totalItems" [pageIndex]="page"
+    [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="size" class="paginator"></mat-paginator>
+
+</div>

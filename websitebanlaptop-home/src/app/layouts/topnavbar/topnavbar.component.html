@@ -1,0 +1,41 @@
+<!-- navigation -->
+<div class="navigation">
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+        <ul class="nav navbar-nav">
+          <li><a [routerLink]="['/home']" routerLinkActive="act">Trang chủ</a></li>
+          <!-- Mega Menu -->
+          <li>
+            <a [routerLink]="['/products']" routerLinkActive="act">Sản phẩm</a>
+          </li>
+          <li><a [routerLink]="['/news']" routerLinkActive="act">Tin tức</a></li>
+          <li>
+            <a [routerLink]="['/checkout']" routerLinkActive="act">
+              Giỏ hàng({{cart.totalItems}})
+            </a>
+          </li>
+          <li *ngIf="!currentUser">
+            <a [routerLink]="['/login']">
+              Đăng nhập
+            </a>
+          </li>
+          <li *ngIf="currentUser">
+              <a (click)="logout()">
+                {{currentUser?.fullName}} (Đăng xuất)
+              </a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<!-- //navigation -->
+<!-- banner -->
+<div class="banner">
+  <div class="container">
+    <h3>Laptop, <span>Store</span></h3>
+  </div>
+</div>
+<!-- //banner -->

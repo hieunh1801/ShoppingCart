@@ -1,0 +1,51 @@
+<div class="single">
+  <div class="container">
+    <div class="col-md-4 single-left">
+      <div class="flexslider">
+        <div class="flex-viewport" style="overflow: hidden; position: relative;">
+          <img src="{{product?.image}}" class="img-responsive"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 single-right">
+      <h3>{{product?.name}}</h3>
+      <div class="description">
+        <h5><i>Mô tả</i></h5>
+        <p>{{product?.title}}</p>
+      </div>
+      <div class="description">
+        <h5><i>Màu sắc</i></h5>
+        <p>{{product?.color}}</p>
+      </div>
+      <div class="description">
+        <h5><i>Cấu hình</i></h5>
+        <p>{{product?.cpu}}</p>
+      </div>
+      <div class="description">
+        <h5><i>Ram</i></h5>
+        <p>{{product?.ram}}</p>
+      </div>
+      <div class="description">
+        <h5><i>Dung lượng bộ nhớ</i></h5>
+        <p>{{product?.memory}}</p>
+      </div>
+      <div class="description">
+        <h5><i>Giá thành</i></h5>
+        <p>{{product?.price}}</p>
+      </div>
+      <button type="submit" class="btn btn-success" (click)="addProductToCart(product,1)">Thêm vào giỏ hàng</button>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+
+<div class="additional_info">
+  <div class="container">
+    <div id="horizontalTab1" style="display: block; width: 100%; margin: 0px;">
+      <div class="additional_info_grid">
+        <h3>Thông tin chi tiết sản phẩm</h3>
+        <p>{{product?.description}}</p>
+      </div>			        					            	      
+    </div>
+  </div>
+</div>

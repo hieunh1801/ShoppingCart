@@ -1,0 +1,107 @@
+<div class="container" style="padding-bottom: 100px;">
+  <div>
+    <h1 class="text-center">
+      Thêm mới sản phẩm
+    </h1>
+  </div>
+  <div>
+    <form [formGroup]="productFormGroup">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Tên sản phẩm</label>
+          <input class="form-control" formControlName="name" id="name" placeholder="Tên sản phẩm" required="" type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tiêu đề</label>
+          <input class="form-control" formControlName="title" id="title" placeholder="Tên tiêu đề" required=""
+            type="text">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-2">Ảnh đính kèm</div>
+        <div class="col-md-10">
+          <label class="btn btn-primary" for="thumbnail">Chọn tệp</label>
+          <input (change)="changeThumbnail($event)" accept="image/*" id="thumbnail"
+            style="display: none; margin-bottom: 10px" type="file" />
+          <div *ngIf="thumbnailSrc">
+            <img [src]="thumbnailSrc" alt="" class="thumbnail-upload thumbnail" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Kích thước</label>
+          <input class="form-control" formControlName="size" id="size" placeholder="Kích thước" required="" type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Khối lượng</label>
+          <input class="form-control" formControlName="weight" id="weight" placeholder="Khối lượng" required=""
+            type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Chiều cao</label>
+          <input class="form-control" formControlName="height" id="height" placeholder="Chiều cao" required=""
+            type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Màu sắc</label>
+          <input class="form-control" formControlName="color" id="color" placeholder="Màu sắc" required="" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Dung lượng bộ nhớ</label>
+          <input class="form-control" formControlName="memory" id="memory" placeholder="Dung lượng bộ nhớ" required=""
+            type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Hệ điều hành</label>
+          <input class="form-control" formControlName="os" id="os" placeholder="Hệ điều hành" required="" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Dung lượng ram</label>
+          <input class="form-control" formControlName="ram" id="ram" placeholder="Dung lượng ram" required="" type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Vi xử lý</label>
+          <input class="form-control" formControlName="cpu" id="cpu" placeholder="Vi xử lý" required="" type="text">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Dung lượng pin</label>
+          <input class="form-control" formControlName="battery" id="battery" placeholder="Dung lượng pin" required=""
+            type="text">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Loại sản phẩm</label>
+          <select class="form-control" formControlName="categoryId">
+            <option *ngFor="let category of categories" [value]="category.categoryId">
+              {{category?.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <ckeditor 
+            (ready)="onReady($event)" 
+            [editor]="config" 
+            formControlName="description" 
+            id="description">
+          </ckeditor>
+        </div>
+      </div>
+      <br>
+    </form>
+  </div>
+  <div>
+    <button (click)="cancel()" class="btn btn-danger btn-cancel">Hủy</button>
+    <button (click)="submit()" class="btn btn-success btn-create" *ngIf="isUpdate===false">Thêm mới</button>
+    <button (click)="submit()" class="btn btn-success btn-update" *ngIf="isUpdate===true">Cập nhập</button>
+  </div>
+</div>

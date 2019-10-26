@@ -1,0 +1,43 @@
+#App name
+app:
+  name: websitebanlaptop
+#---------This is the configuable file---------#
+
+# Datasource Info
+spring:
+  # datasource
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=WebsiteBanLaptop
+    username: sa
+    password: 1
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  # JPA-Hibernate
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#Exception
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
+#Logging Configuration
+logging: 
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    com.websitebanlaptop: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    
+#Config handler NoHandlerFoundException
+spring.mvc: 
+   throw-exception-if-no-handler-found: true
+spring.resources: 
+   add-mappings: false

@@ -1,0 +1,68 @@
+<div class="table-data">
+  <a [routerLink]="['/product-business']"
+    class="btn btn-primary pull-right">Thêm mới sản phẩm
+  </a>
+  <div class="column">
+    <div class="table-container">
+      <table class="table">
+        <thead class="table-header">
+          <tr>
+            <th>STT</th>
+            <th class="">Tên sản phẩm</th>
+            <th class="">Tiêu đề</th>
+            <th class="">Số lượng</th>
+            <th class="">Hình ảnh</th>
+            <th class="">Loại sản phẩm</th>
+            <th class="">Trạng thái</th>
+            <th class="" style="min-width: 100px">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let product of listProducts; let i = index;" class="cursor-pointer">
+            <td>
+              {{pageNumber * pageSize + (i + 1) }}
+            </td>
+            <td class="">
+              {{product?.name}}</td>
+            <td class="">
+              {{product?.title}}</td>
+            <td class="">
+              {{product?.quantity}}</td>
+            <td class="">
+              <img src="{{product?.image}}" class="img-product"/>
+            </td>
+            <td class="">
+              {{product?.category?.name}}</td>
+            <td class="">
+              <span *ngIf="product.status === 1">
+                <button class="btn btn-success">
+                  Đang hoạt động
+                </button>
+              </span>  
+              <span *ngIf="product.status === 0">
+                <button class="btn btn-danger">
+                  Không hoạt động
+                </button>
+              </span>  
+            </td>
+            <td class="">
+              <mat-icon
+                (click)="editProduct(product)"
+                class="mat-18" title="Sửa thông tin sản phẩm" titlePosition="below" style="cursor: pointer;">
+                edit
+              </mat-icon>
+              <mat-icon
+                (click)="changeStatus(product)"
+                class="mat-18" title="Thay đổi trạng thái" titlePosition="below" style="cursor: pointer;">
+                cached
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-paginator (page)="pageSizeChange($event)" *ngIf="totalItems > 0" [length]="totalItems" [pageIndex]="page"
+    [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="size" class="paginator"></mat-paginator>
+
+</div>

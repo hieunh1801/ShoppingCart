@@ -1,0 +1,91 @@
+<div mat-dialog-title>
+  <h1 class="text-center" mat-dialog-title>
+    Thông tin hoá đơn bán
+    <mat-icon (click)="cancel()" class="mat-18 close close-dialog" style="cursor: pointer;">close
+    </mat-icon>
+  </h1>
+</div>
+<div class="" mat-dialog-content>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Mã hoá đơn</label>
+      <p>{{order?.orderId}}</p>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Tên người đặt</label>
+      <p>
+        {{order?.userName}}
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Địa chỉ</label>
+      <p>
+        {{order?.address}}
+      </p>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Số điện thoại</label>
+      <p>
+          {{order?.phone}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Tổng tiền</label>
+      <p>
+        {{order?.totalPrice}}
+      </p>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Tổng số sản phẩm</label>
+      <p>
+          {{order?.totalItems}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Thời gian đặt hàng</label>
+      <p>
+        {{order?.createdate | date: 'dd/MM/yyyy, HH:mm a'}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead class="table-header">
+        <tr>
+          <th>STT</th>
+          <th class="">Tên Sản Phẩm</th>
+          <th class="">Số Lượng</th>
+          <th class="">Đơn giá</th>
+          <th class="">Tổng tiền</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr *ngFor="let orderDetail of order?.listOrderDetails; let i = index;" class="cursor-pointer">
+          <td>
+            {{ i + 1 }}
+          </td>
+          <td class="">
+            {{orderDetail?.laptopName}}
+          </td>
+          <td class="">
+            {{orderDetail?.quantity}}
+          </td>
+          <td class="">
+            {{orderDetail?.price}}
+          </td>
+          <td class="">
+            {{orderDetail?.totalPrice | currency : 'VND' : '' : '1.0'}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

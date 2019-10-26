@@ -1,0 +1,58 @@
+<div class="table-data">
+  <a [routerLink]="['/invoice-business']"
+    class="btn btn-primary pull-right">Thêm mới hoá đơn nhập
+  </a>
+  <div class="column">
+    <div class="table-container">
+      <table class="table">
+        <thead class="table-header">
+          <tr>
+            <th>STT</th>
+            <th class="">Mã hoá đơn</th>
+            <th class="">Tên nhà cung cấp</th>
+            <th class="">Tên người nhập</th>
+            <th class="">Ngày nhập</th>
+            <th class="">Tổng tiền</th>
+            <th class="">Ghi chú</th>
+            <th class="" style="min-width: 100px">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr *ngFor="let invoice of listInvoices; let i = index;" class="cursor-pointer">
+            <td>
+              {{pageNumber * pageSize + (i + 1) }}
+            </td>
+            <td class="">
+              {{invoice?.invoiceId}}</td>
+              <td class="">
+                {{invoice?.supplierName}}</td>
+            <td class="">
+              {{invoice?.employeeName}}</td>
+            <td class="">
+              {{invoice?.createdDate | date: 'dd/MM/yyyy, HH:mm a'}}
+            <td class="">
+              {{invoice?.totalPrice | currency : 'VND' : '' : '1.0'}}</td>
+            <td class="">
+              {{invoice?.notes}}
+            </td>
+            <td class="">
+              <mat-icon
+                (click)="editinvoice(invoice)"
+                class="mat-18" title="Sửa thông tin hoá đơn" titlePosition="below" style="cursor: pointer;">
+                edit
+              </mat-icon>
+              <mat-icon
+                (click)="viewInvoiceDetail(invoice)"
+                class="mat-18" title="Xem chi tiết hoá đơn" titlePosition="below" style="cursor: pointer;">
+                visibility
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <mat-paginator (page)="pageSizeChange($event)" *ngIf="totalItems > 0" [length]="totalItems" [pageIndex]="page"
+    [pageSizeOptions]="[10, 25, 50, 100]" [pageSize]="size" class="paginator">
+  </mat-paginator>
+</div>

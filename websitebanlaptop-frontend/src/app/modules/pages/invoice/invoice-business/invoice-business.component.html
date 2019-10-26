@@ -1,0 +1,60 @@
+<div class="container" style="padding-bottom: 100px;">
+  <div>
+    <h1 class="text-center">
+      Thêm mới hoá đơn nhập
+    </h1>
+  </div>
+  <div>
+    <div class="row form-group">
+      <div class="col-md-6">
+        <label>
+          Nhà cung cấp
+        </label>
+        <select class="form-control" [(ngModel)]="supplierId">
+          <option *ngFor="let supplier of suppliers" value="{{supplier.supplierId}}">
+            {{supplier?.name}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>
+          Ghi chú
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="notes"/>
+      </div>
+    </div>
+    <div class="row" style="padding-left:15px; padding-right: 15px">
+      <div *ngFor="let container of containers" class="invoice-detail col-md-6">
+        <div>
+          <label>
+            Sản phẩm {{container + 1}}
+          </label>
+          <select class="product-{{container}} form-control">
+            <option *ngFor="let product of products" [value]="product?.laptopId">
+              {{product?.name}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label>
+            Số lượng
+          </label>
+          <input type="number" class="amount-{{container}} form-control" placeholder="Số lượng" />
+        </div>
+        <div>
+          <label>
+            Đơn giá
+          </label>
+          <input type="number" class="price-{{container}} form-control" placeholder="Đơn giá" />
+        </div>
+      </div>
+      <div class="col-md-6" style="margin-top:30px">
+          <button class="btn btn-submit btn-success" (click)="addInvoice()">Thêm sản phẩm</button>
+      </div>
+    </div>
+  </div>
+  <div style="float: right;">
+      <button class="btn btn-primary" (click)="submitInvoice()" style="margin-right: 10px;">Thêm hoá đơn nhập</button>
+      <button class="btn btn-danger" (click)="cancel()">Quay lại</button>
+  </div>
+</div>

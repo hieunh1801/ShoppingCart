@@ -1,0 +1,11 @@
+<div class="top-brands">
+  <div class="container">
+    <h3>Nhà cung cấp</h3>
+    <ul class= "suppliers">			
+      <li *ngFor="let supplier of listSuppliers">
+        <img src="{{supplier?.image}}" alt=" " class="img-responsive" />
+        <p>{{supplier?.name}}</p>
+      </li>
+    </ul>
+  </div>
+</div>
